@@ -1,8 +1,10 @@
-from typing import List
+from typing import List, Literal
+
+Binary = Literal[0, 1]
 
 
 class Perceptron:
-    def __init__(self, inputs: List[int], weights: List[int]):
+    def __init__(self, inputs: List[Binary], weights: List[Binary]):
         if len(inputs) != len(weights):
             raise Exception(
                 "The no of weights should be equal to number of inputs"
@@ -11,7 +13,7 @@ class Perceptron:
         self.weights = weights
         self.bias = -5
 
-    def output(self):
+    def output(self) -> Binary:
         summation = sum(weight * input for weight, input in zip(self.weights, self.inputs))
         if summation + self.bias <= 0:
             return 0
